@@ -501,6 +501,43 @@ gameArea.addEventListener("touchmove",(e)=>{
 
     touchStartX = touchX;
 
+
+});
+ // Left Right Button Controls
+const leftBtn = document.getElementById("leftBtn");
+const rightBtn = document.getElementById("rightBtn");
+
+leftBtn.addEventListener("touchstart", () => {
+    keys.ArrowLeft = true;
+});
+
+leftBtn.addEventListener("touchend", () => {
+    keys.ArrowLeft = false;
+});
+
+rightBtn.addEventListener("touchstart", () => {
+    keys.ArrowRight = true;
+});
+
+rightBtn.addEventListener("touchend", () => {
+    keys.ArrowRight = false;
+});
+
+// PC Mouse Support
+leftBtn.addEventListener("mousedown", () => {
+    keys.ArrowLeft = true;
+});
+
+leftBtn.addEventListener("mouseup", () => {
+    keys.ArrowLeft = false;
+});
+
+rightBtn.addEventListener("mousedown", () => {
+    keys.ArrowRight = true;
+});
+
+rightBtn.addEventListener("mouseup", () => {
+    keys.ArrowRight = false;
 });
 
 // Main Game Loop
@@ -544,6 +581,8 @@ function crash(enemy){
     setTimeoutGame();
 
 }
+
+
     </script>
 
 </body>
