@@ -1,0 +1,196 @@
+demo4f.htmldemo4f.html
+<html lang="en">
+<head>
+  <link href="02.jpg" rel="icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N.S.car Racing</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:#111;overflow:hidden;}
+#startScreen{
+  position:absolute;width:100%;height:100%;background-image:url(naitik/pexels-gerxrd-25-1469882273-28944070.jpg);color:whitesmoke;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:100;
+  background-repeat: no-repeat; background-size: cover;,
+}
+#startBtn:hover{
+            
+}
+#startBtn{padding:15px 35px;font-size:40px;cursor:pointer;margin-top:20px; border-radius: 80px; background-color: whitesmoke; color:red; boxshadow:0px 0px 80px red inner}
+#score{position:absolute;top:10px;left:10px;font-size:25px;font-weight:bold;color:white;z-index:50;}
+#gameArea{
+  width:400px;height:100vh;background:#555;margin:auto;position:relative;overflow:hidden;
+  border-left:5px solid white;border-right:5px solid white;
+}
+body{
+    
+                background-image: url(HTML/kristaps-ungurs-owcJsiIK7UU-unsplash.jpg); 
+                background-repeat: no-repeat;
+                background-size: cover;
+            
+}
+.line{position:absolute;width:10px;height:100px;background:white;left:195px;}
+.player{position:absolute;width:60px;height:110px;bottom:20px;left:170px;}
+.player .body{width:60px;height:110px;background:red;border-radius:12px;position:absolute;}
+.player .glass{width:40px;height:25px;background:skyblue;position:absolute;left:10px;top:12px;border-radius:5px;}
+.player .backglass{width:40px;height:20px;background:skyblue;position:absolute;left:10px;bottom:12px;border-radius:5px;}
+.player .wheel{width:10px;height:22px;background:black;position:absolute;}
+.w1{left:-5px;top:15px;} .w2{right:-5px;top:15px;} .w3{left:-5px;bottom:15px;} .w4{right:-5px;bottom:15px;}
+.enemy{position:absolute;width:60px;height:110px;border-radius:12px;}
+.enemy .body{width:100%;height:100%;background:yellow ;border-radius:12px;}
+.enemy .glass{width:40px;height:25px;background:skyblue;position:absolute;left:10px;top:12px;border-radius:5px;}
+.enemy .wheel{width:10px;height:22px;background:black;position:absolute;}
+.enemy .w1{left:-5px;top:15px;} .enemy .w2{right:-5px;top:15px;}
+.enemy .w3{left:-5px;bottom:15px;} .enemy .w4{right:-5px;bottom:15px;}
+.explosion{position:absolute;font-size:700px;display:none;z-index:200;}
+</style>
+</head>
+<body>
+<div id="startScreen">
+  <h1 style=" font-size: 50px;">🏎💕N.S racing Game</h1>
+  <button id="startBtn"><marquee 
+    >Start <button></button></marquee></button>
+</div>
+<div id="score">Score : 0</div>
+<div id="gameArea">
+  <div class="player" id="player">
+    <div class="body"></div>
+    <div class="glass"></div>
+    <div class="backglass"></div>
+    <div class="wheel w1"></div><div class="wheel w2"></div>
+    <div class="wheel w3"></div><div class="wheel w4"></div>
+  </div>
+  <div class="explosion" id="boom">💑</div>
+  
+</div>
+<script>
+const gameArea = document.getElementById("gameArea");
+const player = document.getElementById("player");
+const startBtn = document.getElementById("startBtn");
+const startScreen = document.getElementById("startScreen");
+const scoreBoard = document.getElementById("score");
+const boom = document.getElementById("boom");
+
+let game = {speed:5,score:0,start:false};
+let playerX = 170;
+let playerSpeed = 5;
+
+// Road lines
+for(let i=0;i<8;i++){
+  let roadLine=document.createElement("div");
+  roadLine.classList.add("line");
+  roadLine.y=i*150;
+  roadLine.style.top=roadLine.y+"px";
+  gameArea.appendChild(roadLine);
+}
+
+// Keys
+const keys={ArrowLeft:false,ArrowRight:false,ArrowUp:false,ArrowDown:false};
+document.addEventListener("keydown",(e)=>{if(keys.hasOwnProperty(e.key)) keys[e.key]=true;});
+document.addEventListener("keyup",(e)=>{if(keys.hasOwnProperty(e.key)) keys[e.key]=false;});
+
+// Enemy creation
+function createEnemy(topPos){
+  let enemy=document.createElement("div");
+  enemy.classList.add("enemy");
+  enemy.innerHTML=`
+    <div class="body"></div><div class="glass"></div>
+    <div class="wheel w1"></div><div class="wheel w2"></div>
+    <div class="wheel w3"></div><div class="wheel w4"></div>`;
+  enemy.style.left=(Math.floor(Math.random()*5)*70+20)+"px";
+  enemy.style.top=topPos+"px";
+  gameArea.appendChild(enemy);
+}
+createEnemy(-200); createEnemy(-450); createEnemy(-700);
+
+// Start button
+startBtn.addEventListener("click",()=>{
+  startScreen.style.display="none";
+  game.start=true;
+  window.requestAnimationFrame(playGame);
+});
+
+// Move road lines
+function moveLines(){
+  let lines=document.querySelectorAll(".line");
+  lines.forEach(line=>{
+    line.y+=game.speed;
+    if(line.y>window.innerHeight){line.y=-120;}
+    line.style.top=line.y+"px";
+  });
+}
+
+// Move enemies
+function moveEnemy(){
+  let enemies=document.querySelectorAll(".enemy");
+  enemies.forEach(enemy=>{
+    let y=parseInt(enemy.style.top);
+    y+=game.speed+2;
+    if(y>window.innerHeight){
+      y=-250;
+      enemy.style.left=(Math.floor(Math.random()*5)*70+20)+"px";
+      game.score++;
+      scoreBoard.innerHTML="Score : "+game.score;
+      if(game.score%10===0){game.speed++;}
+    }
+    enemy.style.top=y+"px";
+    if(isCollide(player,enemy)){crash(enemy);}
+  });
+}
+
+// Collision check
+function isCollide(a,b){
+  let aRect=a.getBoundingClientRect();
+  let bRect=b.getBoundingClientRect();
+  return !(aRect.bottom<bRect.top||aRect.top>bRect.bottom||aRect.right<bRect.left||aRect.left>bRect.right);
+}
+
+// Crash effect
+function crash(enemy){
+  game.start=false;
+  boom.style.display="block";
+
+  boom.style.animation="10s"
+  boom.style.left=player.offsetLeft-10+"px";
+  boom.style.top=player.offsetTop-20+"px";
+  player.style.transform="rotate(45deg) scale(1.2)";
+  enemy.style.transform="rotate(-45deg) scale(1.2)";
+
+  setTimeout(()=>{
+    startScreen.style.display="flex";
+    startScreen.style.color="whitesmoke"
+    startScreen.style.fontSize="40px"
+    startScreen.style.fontFamily="Courier New"
+    startScreen.style.fontWeight="bold"
+    startScreen.style.boxShadow="0px 0px 30px black "
+    startScreen.style.backgroundImage="url(02.jpg)"
+
+
+    startScreen.innerHTML=`<h1></h1><p>Game Over : ${game.score}</p><button onclick="resetGame()">फिर से चालू करे🚗</button>`;
+  },1000);
+}
+
+// Reset game
+function resetGame(){
+  game.speed=5; game.score=0; playerX=170;
+  player.style.left=playerX+"px";
+   player.style.transform="none";
+  
+  boom.style.display="none"; scoreBoard.innerHTML="Score : 0";
+  document.querySelectorAll(".enemy").forEach((enemy,i)=>{enemy.style.top=(-200*i)+"px"; enemy.style.transform="none";});
+  startScreen.style.display="none"; game.start=true;
+  window.requestAnimationFrame(playGame);
+}
+
+// Player movement
+function playGame(){
+  if(!game.start) return;
+  moveLines(); moveEnemy();
+  if(keys.ArrowLeft&&playerX>0){playerX-=playerSpeed;}
+  if(keys.ArrowRight&&playerX<340){playerX+=playerSpeed;}
+  player.style.left=playerX+"px";
+  window.requestAnimationFrame(playGame);
+}
+</script>
+</body>
+</html>

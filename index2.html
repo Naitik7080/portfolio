@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <link href="02.jpg" rel="icon >"
+
+    </head>
+    <body>
+        <p id="P"></p>
+        <input type="text" id="t1"/>
+        <button onclick="demo()" id="btn">Validate</button>
+        <script>
+            function demo()
+            {
+                var p=document.getElementById("P");
+                var t=document.getElementById("t1");
+                var len=t.value.length;
+                var x=document.getElementById("btn");
+                if (len==6)
+                {
+                    p.innerText="Valid Pincode"
+                    p.style.color="green"
+                    t.style.border="3px solid green"
+                    t.style.color="green"
+                    btn.style.background="green"
+                    bt.style.border="none"
+                }
+                else
+                {
+                    p.innerText="Invalid Pincode"
+                    p.style.color="red"
+                    t.style.border="3px solid red"
+                    t.style.color="red"
+                    btn.style.background="red"
+                    bt.style.border="none"
+                }
+            }
+        </script>
+    </body>
+</html>

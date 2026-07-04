@@ -1,0 +1,117 @@
+<html>
+    <head>
+        <link href="02.jpg" rel="icon">
+        <style>
+            body{
+                
+                height: 500px;
+                width: 1200px;
+                background:linear-gradient(rgba(
+                    0,0,0,0.5
+                )),  url(02.jpg);
+                background-size: cover;
+                background-attachment: fixed;
+                color: white;
+                padding-top: 100px;
+                padding-left: 150px;
+                padding-right: 150px;
+                box-sizing: border-box;
+            
+
+            }
+            #dv{
+                background-color: rgb(51, 199, 120);
+                width: 250px;
+                padding: 20px;
+                margin-top:50px  ;
+                margin-left:50px ;
+                margin-right:50px ;
+                box-sizing: border-box;
+                text-align: center;
+                box-shadow: 0px 0px 50px green ;
+                border-radius: 60px;
+                color: rgb(233, 199, 6);
+            }
+        </style>
+    </head>
+    <body   >
+
+
+        <fieldsetid style="width: 150;">
+            <legend id="dv">Registration Form & Feedback Form </legend>
+            <tabel  cellpading="5">
+                <form   id="dv"  method="post">
+                
+                 <br>
+                 <td><i><b><color="red">Student name</color=></b></i></td>
+                 <input type="Name" placeholder="Enter your name" requried  autofocus  tabindex="1">
+                </br>
+                <br>
+                <td><i><b> <color="red">Father's Name</b></i></td>
+                <input type="Name" placeholder="Enter your father name" requried  tabindex="2" >
+                 </br>
+                 <br>
+                 <td><i><b> <color="red">Email Adress</b></i></td>
+                 <input type="email" placeholder="Enter your email adress" required tabindex="3" >
+                </br>
+                <br>
+                <td><i><b>Date & Time</b></i></td>
+                <input type="datetime-local" required  >
+                </br>
+                <br>
+                <td><i><b>Gender</b></i></td>
+                <input type="radio" name="Gender" >Male 
+                <input type="radio" name="Gender" >Female
+                </br>
+                 <br>
+                 <td><i><b>Enter Password</b></i></td>
+                 <input  type="password"  requried>
+                 </br>
+                 <br>
+                 <td><i><b>Choose Branch</b></i></td>
+                 <select>
+                    <option>CSE</option>
+                    <option>IT</option>
+                    <option>Civil</option>
+                    <option>Chemical</option>
+                    <option disabled> ECE</option>
+                 </select>
+                </br>
+                <br>
+                <td><i><b>Contact </b></i></td>
+                <input type="number"   placeholder="Enter your Contact detail" required >
+                 </br>
+                 <br>
+                 <td><I><b>Message</b></I></td>
+                 <td><textarea></textarea></td>
+                </br>
+                <br>
+                <td><i><b>Choose sport</b></i></td>
+                <input type="checkbox">Runing
+                <input type="checkbox">bollyboll
+                <input type="checkbox">football
+                <input type="checkbox">hockey
+                <input disabled type="checkbox">Wrestling
+                 </br>
+                 <br>
+                 <td><i><b>File</b></i></td>
+                 <input type="file"  required>
+                </br>
+                <br>
+                <td><i><b>choose Week</b></i></td>
+                <input type="week " >
+                </br>
+                <br>
+                <button>Login</button>
+                <button>Reset</button>
+                  </br>
+                 
+
+                
+
+                </form>
+
+            </tabel>
+        </fieldset>
+    </body>
+</html>
