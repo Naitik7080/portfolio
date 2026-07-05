@@ -1,32 +1,140 @@
 <html>
     <head>
-        <link href="02.jpg" rel="icon >"
+        <style>
+            body{
+                background:linear-gradient(rgba(124,240,124,0.5 )), url(abcd.png.jpg);
+            }
+            #btn{
+                margin-left: 50px;
+                margin-top: 100px;
+                border-radius: 30px;
+                height: 50px;
+                width: 170px;
+                font-size:30px ;
+                font-family:'Courier New', Courier, monospace;
+                font-weight:bold ;
+                box-sizing:border-box ;
+                box-shadow:0px 0px 100px  red;
+                color: gold;
+                background-color: red;
+                border: 2px solid black;
+                text-align: center;
+            }
+            
+            
+              
+            #t1{
+                margin-left: 400px;
+                
+                margin-top: 250px;
+                text-align: center;
+                
+                
+    
+                border-radius: 30px;
+                height: 50px;
+                
+                font-size:30px ;
+                font-family:'Courier New', Courier, monospace;
+                font-weight:bold ;
+                box-sizing:border-box ;
+                box-shadow:0px 0px 180px red
+                 ;
+                color: black;
+                background-color: rgb(245, 245, 11);
+                padding-right: 50px;
+                padding-left: 50px;
+                box-sizing: border-box;
+            
+            }
+            #km{
+                height: 50px;
+                width: 750px;
+        
+            box-shadow: 0px 0px 50px red;
+                background-color: yellow;
+                padding-top: 10px;
+            
+                color: black;
+                font-size: 50px;
+                margin-left:330px  ;
+                text-align: center;
+                border:  5px solid Yellow;
+                border-radius:40px ;
+                font-family: 'Courier New', Courier, monospace;
+                font-size:38px ;
+                font-weight: bold;
+                
+                margin-top:100px ;
+            }
+        
+
+        </style>
+        <link href="02.jpg" rel="icon" >
+        
+
+    
 
     </head>
     <body>
+        <p id="km">Check Your Pin Is Correct or Not
+
+        </p>
         <p id="P"></p>
-        <input type="text" id="t1"/>
-        <button onclick="demo()" id="btn">Validate</button>
+        <input   placeholder="Enter 6 digit Code " required type="number" id="t1"/>
+        <button onclick="demo()" id="btn">Check</button>
+        
+        
+
+        </p>
         <script>
             function demo()
             {
+            
                 var p=document.getElementById("P");
                 var t=document.getElementById("t1");
                 var len=t.value.length;
                 var x=document.getElementById("btn");
-                if (len==6)
+                if(/^\d{6}$/.test(t.value))
                 {
                     p.innerText="Valid Pincode"
-                    p.style.color="green"
-                    t.style.border="3px solid green"
+                    p.style.color="white"
+                
+                    p.style.marginLeft="150px"
+                    p.style.marginRight="150px"
+                    p.style.fontSize="150px"
+                    p.style.border="5px solid black"
+                    p.style.backgroundColor="Green"
+
+                    p.style.borderRadius="55px"
+                    p.style.paddingRight="50px"
+                    p.style.paddingLeft="50px"
+                    p.style.textAlign="Center"
+                    
+                
+                    t.style.border="3px solid black"
                     t.style.color="green"
                     btn.style.background="green"
+                    
                     bt.style.border="none"
                 }
                 else
                 {
                     p.innerText="Invalid Pincode"
-                    p.style.color="red"
+                    p.style.color="White"
+                    p.style.marginLeft="150px"
+                    p.style.marginRight="150px"
+                    p.style.fontSize="150px"
+                    p.style.border="5px solid black"
+                    p.style.backgroundColor="Red"
+                    p.style.animation="Shake"
+
+                    p.style.borderRadius="55px"
+                    p.style.paddingRight="50px"
+                    p.style.paddingLeft="50px"
+                    p.style.textAlign="Center"
+                    
+
                     t.style.border="3px solid red"
                     t.style.color="red"
                     btn.style.background="red"
